@@ -1,12 +1,12 @@
 # --- General options --- #
 
 # Name of website
-title: Enfield Jekyll Theme
+title: Flipout50.info
 
 # Short description of your site
-tagline: The dark side of Jekyll
+tagline: Ctf writeups & blogs
 # Long description of your site
-description: Enfield Jekyll Theme is the dark the for your Jekyll based blog. It's gem based and rocks!
+description: Ctf writeups & blogs
 
 # --- Local development options ---
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
@@ -22,19 +22,13 @@ baseurl: ""
 
 # List of links in the navigation bar
 navbar-links:
+  About: about
   Contact: contact
-  Resources:
-    - Learn Jekyll: "https://jekyllrb.com/docs/"
-    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
-    - Learn markdown: "http://www.markdowntutorial.com/"
-    - Learn more about Jekyll plugins: "https://github.com/jekyll"
-  Downloads: downloads
-  Author's home: "https://marcel-artz.de"
 
 # TODO: List of links in the footer
-footer-links:
-  Privacy: privacy
-  Impress: impress
+#footer-links:
+#  Privacy: privacy
+#  Impress: impress
 
 # Sass/SCSS conversion for syntax.scss
 sass:
@@ -78,10 +72,10 @@ footer-link-col: "#FFC400"
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
-  name: Marcel Artz
-  email: person@example.com
-  url: https://marcel-artz.de
-  github: ma744
+  name: Flipout50
+  email: Flipout50.ctf@gmail.com
+  url: https://flipout50.info
+  github: Flipout50
 
 # OPG-Picture
 logo: /assets/page-images/screenshot.png
@@ -95,9 +89,9 @@ repository: https://github.com/ma744/Enfield
 # You can reorder the items to define the link order.
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
-  rss: true
-  email: "someone@example.com"
-  github: ma744
+#  rss: true
+  email: "Flipout50.ctf@gmail.com"
+  github: Flipout50
 #  facebook: deanattali
 #  twitter: daattali
 #  reddit: yourname
@@ -144,7 +138,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "marcel-artz.de"  # eg. "deanattali.com/beautiful-jekyll"
+url-pretty: "flipout50.info"  # eg. "deanattali.com/beautiful-jekyll"
 
   # --- Web Statistics Section --- #
 
@@ -208,7 +202,7 @@ defaults:
     values:
       layout: "post"
       comments: false  # add comments to all blog posts
-      related-posts: true # add related posts at the end of each post
+      related-posts: false # add related posts at the end of each post
       social-share: false # add social media sharing buttons to all blog posts
 
   -
@@ -223,7 +217,7 @@ link-tags: true
 
 # @mention support for your social network.
 # See https://github.com/jekyll/jekyll-mentions for further instructions
-jekyll-mentions: https://twitter.com    # Replace url with 'false' to deacttivate @mention
+jekyll-mentions: 'false'    # Replace url with 'false' to deacttivate @mention
 
 
 # Exclude these files from production site

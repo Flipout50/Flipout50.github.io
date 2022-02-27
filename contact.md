@@ -5,7 +5,6 @@ title: Contact
 
 ## Contact ##
 
-**e-mail:** mail@example.com
+**e-mail:** Flipout50.ctf@gmail.com
 
-**GPG key:** *put your key here*
 
