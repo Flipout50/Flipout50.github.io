@@ -2,7 +2,7 @@
 layout: post
 title: "Not Really Math"
 subtitle: "HSCTF8 algo writeup
-date: 2022-02-28
+date:   2022-02-27
 tags: writeup, algo
 ---
 I competed in HSCTF8 a while ago, but I decided to reupload some of the writeups here. If you would like to see my teams full repo of challenges, the github link will be at the end of this post.
@@ -11,23 +11,23 @@ Anyway, this was the warmup algorithm challenge at the competition, but gave me 
 ## Description
 Have a warmup algo challenge.
 
-``nc not-really-math.hsc.tf 1337``
+`nc not-really-math.hsc.tf 1337`
 
 [not-really-math.pdf][1]
 [1]:{{ site.url }}/downloads/not-really-math.pdf
 
-## Solution
+## Solution ##
 My first instinct was to create a script that would find the index of all the addition operations (The a's). It would then find the values on either side of the operation
 and add them. It would do this for every a in the problem then multiply the remaining numbers. This works great for the test case in the pdf and other problems I could think of. This algorithm breaks down when addition opperations are chained like below:
 
-``1m4a3a6a2m4a2m3``
+`1m4a3a6a2m4a2m3`
 
 My flawed algorithm would compute ``4 + 3``, then ``3 + 6``, and then ``6 + 2``. It always will repeat values when adding. After fiddling with ways to detect addition chaining and forming exceptions, the code got too complicated to fast. I had to rethink my approach.
 
 I thought of a new method that would pull all groups of addition out as a substring. The algorithm would replace the a's with a "+" and use python's ``eval()`` function to compute the results. Results were stored in a list and later multiplied out. The final result was modded by 2<sup>32</sup> - 1 and sent to the nc server with pwntools.
 
 Final script is below:
-```python3
+```python
 import re
 from pwn import *
 def multiplyList(list):
@@ -112,6 +112,6 @@ while True:
     
 ```
 Running the code gives the flag!
-## Flag
-``flag{yknow_wh4t_3ls3_is_n0t_real1y_math?_c00l_m4th_games.com}``
-##[All HSCTF8 Writeups](https://github.com/BASHing-thru-challenges/HSCTF-2021-Writeups)
+## Flag ##
+`flag{yknow_wh4t_3ls3_is_n0t_real1y_math?_c00l_m4th_games.com}`
+## [All HSCTF8 Writeups](https://github.com/BASHing-thru-challenges/HSCTF-2021-Writeups) ##
