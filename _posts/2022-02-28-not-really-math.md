@@ -12,8 +12,7 @@ Have a warmup algo challenge.
 
 `nc not-really-math.hsc.tf 1337`
 
-[not-really-math.pdf][1]
-[1]:{{ site.url }}/downloads/not-really-math.pdf
+[not-really-math.pdf](ctf.flipout50.info/downloads/not-really-math.pdf)
 
 ## Solution ##
 My first instinct was to create a script that would find the index of all the addition operations (The a's). It would then find the values on either side of the operation
