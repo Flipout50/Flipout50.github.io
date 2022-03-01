@@ -132,7 +132,7 @@ PLATFORMS
 DEPENDENCIES
   enfield-jekyll-theme!
   jekyll (~> 4.1)
-  webrick (~> 1.7)
+  webrick
 
 BUNDLED WITH
    2.1.4
