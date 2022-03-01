@@ -48,7 +48,7 @@ already been made before, so why re-invent the wheel. I pulled out an old math t
 ![image](https://user-images.githubusercontent.com/80281801/123070989-19d1d000-d3c9-11eb-8a64-af03b5247469.png)
 
 I implemented the formula in python and got my final script:
-```python3
+```python
 from pwn import *
 import math
 def findBoards(n):
