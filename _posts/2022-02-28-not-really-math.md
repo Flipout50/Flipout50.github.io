@@ -3,7 +3,6 @@ layout: post
 title: "Not Really Math"
 subtitle: "HSCTF8 algo writeup
 date:   2022-02-27
-tags: writeup, algo
 ---
 I competed in HSCTF8 a while ago, but I decided to reupload some of the writeups here. If you would like to see my teams full repo of challenges, the github link will be at the end of this post.
 Anyway, this was the warmup algorithm challenge at the competition, but gave me the most trouble of all the algorithm challs I managed to complete.
