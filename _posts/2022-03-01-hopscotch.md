@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hopscotch"
-subtitle: "HSCTF8 algo writeup"
+subtitle: "Permutations of a multiset"
 data:   2022-03-01
 tags: writeups algo
 ---
