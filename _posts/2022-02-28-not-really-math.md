@@ -3,6 +3,7 @@ layout: post
 title:  "Not Really Math"
 subtitle: "HSCTF8 algo writeup"
 date:   2022-03-01
+tags: writeups algo
 ---
 I competed in HSCTF8 a while ago, but I decided to reupload some of the writeups here. If you would like to see my teams full repo of challenges, the github link will be at the end of this post.
 Anyway, this was the warmup algorithm challenge at the competition, but gave me the most trouble of all the algorithm challs I managed to complete.
@@ -12,9 +13,9 @@ Have a warmup algo challenge.
 
 `nc not-really-math.hsc.tf 1337`
 
-[not-really-math.pdf](ctf.flipout50.info/downloads/not-really-math.pdf)
+[not-really-math.pdf](/downloads/not-really-math.pdf)
 
-## Solution ##
+## Solution
 My first instinct was to create a script that would find the index of all the addition operations (The a's). It would then find the values on either side of the operation
 and add them. It would do this for every a in the problem then multiply the remaining numbers. This works great for the test case in the pdf and other problems I could think of. This algorithm breaks down when addition opperations are chained like below:
 
@@ -25,7 +26,7 @@ My flawed algorithm would compute ``4 + 3``, then ``3 + 6``, and then ``6 + 2``.
 I thought of a new method that would pull all groups of addition out as a substring. The algorithm would replace the a's with a "+" and use python's ``eval()`` function to compute the results. Results were stored in a list and later multiplied out. The final result was modded by 2<sup>32</sup> - 1 and sent to the nc server with pwntools.
 
 Final script is below:
-```python3
+```python
 import re
 from pwn import *
 def multiplyList(list):
@@ -110,7 +111,7 @@ while True:
     
 ```
 Running the code gives the flag!
-## Flag ##
+## Flag
 `flag{yknow_wh4t_3ls3_is_n0t_real1y_math?_c00l_m4th_games.com}`
-## [All HSCTF8 Writeups](https://github.com/BASHing-thru-challenges/HSCTF-2021-Writeups) ##
+## [All HSCTF8 Writeups](https://github.com/BASHing-thru-challenges/HSCTF-2021-Writeups)
 
