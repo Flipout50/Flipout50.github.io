@@ -105,6 +105,7 @@ hash format built into john, but john has a really cool feature that allows us t
 option. Since ``Double MD5`` is just two cycles of ``MD5``, our format is ``md5(md5($p))``. We can specify our wordlist with ``--wordlist=./passwords.txt`` and I
 pasted the given hash into a file called ``hash``. Now we just need to put it all together and run our final command: ``john -form=dynamic='md5(md5($p))' --wordlist=./passwords.txt hash``
 ![image](/img/cracked.png)
+
 As we can see, john found the password ``CerbyToby1901*``!
 
 ## Flag
