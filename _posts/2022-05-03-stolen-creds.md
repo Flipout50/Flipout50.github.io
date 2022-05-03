@@ -7,7 +7,7 @@ tags: writeups crypto
 ---
 Here's another writeup for a challenge at Simulations Arcade Hack CTF. This challenge was pretty cool and boiled down to making a python script to generate a custom
 wordlist and using it to crack a password hash. Very Fun!
-# Stolen Creds (Unknown Solves, 100 points)
+# Stolen Creds (10 Solves, 100 points)
 ## Description
 We’ve gotten a copy of Cerby’s creds, but his password is really weird. Can you take a look and see if you can figure it out?
 
