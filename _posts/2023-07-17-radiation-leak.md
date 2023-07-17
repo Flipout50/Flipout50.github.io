@@ -26,12 +26,12 @@ code generation script. I took a peak at the codes to get a sense of format. We 
 Now we can dive into the generation script. First the `random` library is imported. The uses it to initialize a 64 byte random seed. The script
 also defines a bit mask of 64 1's. The `state_1` variable is set to a random 64-bit value and `state_2` gets set using the previous values
 as defined in this line:
-```python3
+```python
 state_2 = (state_1 + random.getrandbits(64)) & mask
 ```
 
 The next bit of code here:
-```python3
+```python
 with open("bip39.txt") as f:
     bip = [i for i in f.read().split("\n") if i]
 ```
@@ -49,7 +49,7 @@ and uses an algorithm to generate a passphrase from it. In other words, if we ge
 Ok, so the script uses the `generate_token()` function to get theses large numbers and it turens those into passphrases.
 Time to look at the `generate_token()` function.
 
-```python3
+```python
 def generate_token():
     global seed, state_1, state_2, mask
     result = seed & mask
@@ -77,13 +77,13 @@ be and use it to login to the admin panel.
 
 ### Step 1
 First at the top of my script I loaded the wordlist into a python list with the same method seen in the challenge script.
-```python3
+```python
 with open("bip39.txt") as f:
     bip = [i for i in f.read().split("\n") if i]
 ```
 
 Then I wrote a function `gen_binary_token(passphrase)` which takes in a passphrase and converts it to a 64 bit bitstring:
-```python3
+```python
 def gen_binary_token(passphrase):
     words = passphrase.split('-')
     words = words[::-1] # Reverse order to concatenate binStrings correctly
@@ -102,7 +102,7 @@ using pythons `.index()` function. Then that number is converted to binary and f
 is done for every word, the `bin_token` variable is returned. I made two more helper functions for step one, `gen_dataset()`
 and `parse_leaked_tokens()`.
 
-```python3
+```python
 def gen_dataset(tokens):
     data = []
     for token in tokens:
@@ -111,7 +111,7 @@ def gen_dataset(tokens):
 ```
 This one takes a list of passphrases and returns a list of the binary tokens for those phrases.
 
-```python3
+```python
 def parse_leaked_tokens(file):
     tokens = []
     for line in file:
@@ -121,7 +121,7 @@ def parse_leaked_tokens(file):
 This function just takes in a file and makes a list of passphrases
 
 Finally there is the driver code for step 1:
-```python3
+```python
 leak = open('leaked_tokens.txt', 'r')
 tokens = parse_leaked_tokens(leak)
 leak.close()
@@ -137,14 +137,14 @@ boolean algebra stuff behind the scenes to tell us if there is a solution to wha
 If there is a solution, it can tell what it is, or in the case there is more the one, tell us all possible solutions. This
 is a great use of z3 because nothing that happens is too computationally difficult, its mostly just bit manipulation and basic
 arithmetic. We import z3 into python with the line
-```python3
+```python
 from z3 import*
 ```
 
 Using the library, I made a function `recover_vars(data)`. This will take in our dataset made in step 1 and generate constraints
 using the equaions from the `generate_token()` function given to us. Then it will feed these constraints to z3 and tell it to find
 our unknowns, which here are `state_1`, `state_2`, and `seed`. This the complete function:
-```python3
+```python
 def recover_vars(data):
     s = Solver()
     int_data = [int(x, 2) for x in data]
@@ -193,7 +193,7 @@ math and our computer isn't powerfull enough. Luckily for us, this problem is si
 The next bit of code uses `s.model()` to actually pull the solutions from z3. It uses `.as_long()` to interpret the z3 solved
 variables as integers. Then the initial seed, `state_1`, and `state_2` are returned from the function as a tuple. The information
 is stored in the main driver code like this:
-```python3
+```python
 seed, state_1, state_2 = recover_vars(data)
 ```
 
@@ -202,7 +202,7 @@ Now that we have the seed and state variables that the website is using to creat
 generated will be. I made a function `generate_nth_token(seed, state_1, state_2, n)` that will take in the initial values and return
 the nth number that is generated using those values.
 
-```python3
+```python
 def generate_nth_token(seed, state_1, state_2, n):
     for _ in range(n):
         result = seed & mask
@@ -215,14 +215,14 @@ To make this, I basically copy and pasted the part of the code from the challeng
 instead of generating 30 values, it generates `n` values and returns the nth one from the function. This means we can get the next
 token and use the `convert_to_string()` function to get the passphrase the website generated like so:
 
-```python3
+```python
 next_token = generate_nth_token(seed, state_1, state_2, 31)
 passphrase = convert_to_string(next_token)
 print(f"Next passphrase: {passphrase}")
 ```
 
 This completes of finished `solve.py` script:
-```python3
+```python
 from z3 import *
 
 mask = (1 << 64) - 1
