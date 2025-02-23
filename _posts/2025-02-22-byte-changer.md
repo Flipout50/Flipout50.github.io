@@ -59,7 +59,7 @@ The other thing is that the index we give is unbounded. So the challenge is pret
 Pretty quickly I decided a general plan of action. Since we can actually modify the code, the idea I had is to use our single byte write to force the code into an infinite loop, which would allow us to repeating the process of providing an index and writing a byte. From now on, I will call this theoretical byte the looping byte. Using the loop, I would overwrite the saved instruction pointer on the stack and then change the looping byte back to its original state so the `main` function would return, load the `win` function's address into `rip`, and we would be done.
 
 Now there is a flaw with this idea. The saved return address is stored on the stack. Our index allows us to write into the code segment of the running process. After realizing this I decided to look at the assembly for `main` so that I could plan a more detailed approach. Here is the critical segment, which is the end of `main`, starting from the instruction that writes our byte into the index of our choice:
-```asm
+```
 0000130f  8802               mov     byte [rdx], al
 00001311  b800000000         mov     eax, 0x0
 00001316  488b55f8           mov     rdx, qword [rbp-0x8 {var_10}]
