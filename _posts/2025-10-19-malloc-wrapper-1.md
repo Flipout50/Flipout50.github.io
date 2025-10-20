@@ -3,7 +3,7 @@ layout: post
 title: "Malloc Wrapper Part 1"
 subtitle: "QnQSec 2025 Pwn Challenge"
 date: 2025-10-19
-tags: writeups pwn
+tags: writeups pwn heap
 ---
 
 In a continued effort to play more pwn during ctfs I finished this pretty neat heap pwn challenge at QnQSec CTF 2025. I didn't get time to attempt the follow up part 2 to this challenge, but I might still try it and do a writeup if I have time. This was a pretty cool challenge that involved a bit more RE than other pwn challenges i've done. This is also the first time ive solved a heap based challenge so that was pretty neat.
